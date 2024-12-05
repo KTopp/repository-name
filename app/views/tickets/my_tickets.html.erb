@@ -11,6 +11,7 @@
           <th>Category</th>
           <th>Price</th>
           <th>Actions</th>
+          <th>QR code</th>
         </tr>
       </thead>
       <tbody>
@@ -23,6 +24,18 @@
             <td>$<%= ticket.price %></td>
             <td>
               <%= button_to "Resell", sell_ticket_path(ticket), method: :patch, data: { turbo_confirm: "Are you sure you want to resell this ticket?" }, class: "btn btn-primary btn-sm" %>
+            </td>
+            <td>
+              <% if ticket.qr_code %>
+               <%= RQRCode::QRCode.new(ticket.qr_code).as_svg(
+    offset: 0,
+    color: '000',
+    shape_rendering: 'crispEdges',
+    standalone: true,
+    module_size: 5
+  )
+.html_safe %>
+               <% end %>
             </td>
           </tr>
         <% end %>
