@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <h1>Edit Ticket Price</h1>
+
+  <%= simple_form_for @ticket, url: update_ticket_path(@ticket), method: :patch do |f| %>
+    
+    <div class="mb-3">
+      <%= f.label :price, "Price" %>
+      <%= f.number_field :price, step: 0.01, class: "form-control", placeholder: "Enter new price" %>
+    </div>
+    
+    <div class="mt-3">
+      <%= f.submit "Update Price", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <h1>Create New Ticket for <%= @event.name %></h1>
+  
+  <%= simple_form_for @ticket, url: event_tickets_path, method: :post do |f| %>
+    <!-- Ticket Number -->
+    <div class="mb-3">
+      <%= f.label :ticket_number, "Ticket Number" %>
+      <%= f.text_field :ticket_number, class: "form-control", placeholder: "Enter ticket number" %>
+    </div>
+
+    <!-- Price -->
+    <div class="mb-3">
+      <%= f.label :price, "Price" %>
+      <%= f.number_field :price, step: 0.01, class: "form-control", placeholder: "Enter ticket price" %>
+    </div>
+
+    <!-- Ticket Category -->
+    <div class="mb-3">
+      <%= f.label :ticket_category, "Category" %>
+      <%= f.select :ticket_category, Ticket.ticket_categories.keys.map { |key| [key.titleize, key] }, {}, class: "form-select" %>
+    </div>
+
+    <!-- Status (Hidden) -->
+    <%= f.hidden_field :status, value: Ticket.statuses[:for_sale] %>
+
+    <!-- Event ID (Hidden) -->
+    <%= f.hidden_field :event_id, value: @event.id %>
+
+    <!-- User ID (Hidden) -->
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <!-- Submit Button -->
+    <div class="mt-3">
+      <%= f.submit "Create Ticket", class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

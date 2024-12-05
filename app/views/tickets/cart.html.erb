@@ -1,0 +1,29 @@
+<h1>Shopping Cart</h1>
+
+<% if @tickets.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Ticket Number</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tickets.each do |ticket| %>
+        <tr>
+          <td><%= ticket.ticket_number %></td>
+          <td><%= ticket.ticket_category.titleize %></td>
+          <td>$<%= ticket.price %></td>
+          <td>
+            <%= button_to "Cancel", cancel_path(ticket), method: :patch, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= button_to "Purchase All", sold_path, method: :patch, class: "btn btn-success" %>
+<% else %>
+  <p>Your cart is empty.</p>
+<% end %>

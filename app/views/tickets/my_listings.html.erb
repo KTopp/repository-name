@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h1>My Listings</h1>
+
+  <% if @tickets.any? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Ticket Number</th>
+          <th>Event Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tickets.each do |ticket| %>
+          <tr>
+            <td><%= ticket.ticket_number %></td>
+            <td><%= ticket.event.name %></td>
+            <td><%= ticket.ticket_category.titleize %></td>
+            <td>$<%= ticket.price %></td>
+            <td class="d-flex">
+              <%= button_to "Stop Sale", stop_path(ticket), method: :patch, data: { confirm: "Are you sure you want to stop the sale of this ticket?" }, class: "btn btn-warning btn-sm" %>
+              <%= link_to "Edit", edit_ticket_path(ticket), class: "btn btn-primary btn-sm" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>You currently have no tickets listed for sale or pending.</p>
+  <% end %>
+</div>

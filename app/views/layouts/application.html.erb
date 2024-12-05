@@ -18,6 +18,41 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <!-- Navbar Toggler for mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Brand -->
+        <a class="navbar-brand" href="<%= events_path %>">GoGoGo</a>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- My Listings Link -->
+            <li class="nav-item">
+              <a class="nav-link" href="<%= my_listings_path %>">My Listings</a>
+            </li>
+
+            <!-- My Tickets Link -->
+            <li class="nav-item">
+              <a class="nav-link" href="<%= my_tickets_path %>">My Tickets</a>
+            </li>
+          </ul>
+
+          <!-- Buttons -->
+          <div class="d-flex">
+            <!-- Profile Button -->
+            <a class="btn btn-outline-success me-2" href="<%= edit_user_registration_path %>">Profile</a>
+
+            <!-- Cart Button -->
+            <a class="btn btn-outline-primary" href="<%= cart_path %>">Cart</a>
+          </div>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
