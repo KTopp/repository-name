@@ -1,13 +1,28 @@
-<h1>All Events</h1>
-
-<% @events.each do |event| %>
-  <div class="card mb-3">
-    <div class="card-body">
-      <h5><%= event.name %></h5>
-      <p>Date: <%= event.date.strftime("%B %d, %Y") %></p>
-      <p>Location: <%= event.location %></p>
-      <p>Capacity: <%= event.capacity %></p>
-      <%= link_to "View Tickets", event_tickets_path(event), class: "btn btn-primary" %>
-    </div>
+<div class="container mt-4">
+  <h1>Events</h1>
+  <%= render "shared/events_search_bar" %>
+  <div id="events" class="mt-4">
+    <% if @events.any? %>
+      <% @events.each do |event| %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5><%= event.name %></h5>
+            <p>Date: <%= event.date.strftime("%B %d, %Y") %></p>
+            <p>Location: <%= event.location %></p>
+            <p>Tickets available: <%= event.tickets.where(status: "for_sale").count %></p>
+            <p>Current average price:
+              <% avg_tickets = [] %>
+              <% event.tickets.where(status: "for_sale").each do |ticket| %>
+                <% avg_tickets << ticket.price %>
+              <% end %>
+              $ <%= avg_tickets.sum.fdiv(event.tickets.where(status: "for_sale").count).round(0) %>
+              </p>
+            <%= link_to "View Tickets", event_tickets_path(event), class: "btn btn-success" %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <em>Sorry, no events found.</em>
+    <% end %>
   </div>
-<% end %>
+</div>
