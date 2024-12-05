@@ -28,13 +28,12 @@
             <td>
               <% if ticket.qr_code %>
                <%= RQRCode::QRCode.new(ticket.qr_code).as_svg(
-    offset: 0,
-    color: '000',
-    shape_rendering: 'crispEdges',
-    standalone: true,
-    module_size: 5
-  )
-.html_safe %>
+                                                              offset: 0,
+                                                              color: '000',
+                                                              shape_rendering: 'crispEdges',
+                                                              standalone: true,
+                                                              module_size: 5
+                                                              ).html_safe %>
                <% end %>
             </td>
           </tr>
@@ -45,3 +44,7 @@
     <p>You have no tickets purchased.</p>
   <% end %>
 </div>
+
+model de bootstrap
+con display none
+al cancelar se vuelve a poner el display none
