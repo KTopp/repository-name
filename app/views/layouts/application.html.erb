@@ -44,12 +44,20 @@
 
           <!-- Buttons -->
           <div class="d-flex">
+            <!-- Cart Button -->
+            <a class="btn btn-outline-primary me-2" href="<%= cart_path %>">Cart</a>
+
             <!-- Profile Button -->
             <a class="btn btn-outline-success me-2" href="<%= edit_user_registration_path %>">Profile</a>
 
-            <!-- Cart Button -->
-            <a class="btn btn-outline-primary" href="<%= cart_path %>">Cart</a>
+            <!-- Login Button -->
+            <% if user_signed_in? %>
+              <a class="btn btn-outline-danger" href="<%= destroy_user_session_path %>">Log Out</a>
+            <% else %>
+              <a class="btn btn-outline-primary" href="<%= new_user_session_path %>">Sign In</a>
+            <% end %>
           </div>
+          
         </div>
       </div>
     </nav>
