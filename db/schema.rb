@@ -10,8 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 0) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_05_082228) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.datetime "date"
+    t.string "location"
+    t.integer "capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "ticket_number"
+    t.float "price"
+    t.string "status"
+    t.integer "ticket_category"
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "buyer_id"
+    t.index ["event_id"], name: "index_tickets_on_event_id"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "tickets", "events"
+  add_foreign_key "tickets", "users"
 end
