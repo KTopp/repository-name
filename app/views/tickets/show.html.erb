@@ -16,7 +16,7 @@
     <p class="mb-3">Category: <%= @ticket.ticket_category %></p>
     <p class="mb-3">Price: $<%= @ticket.price %></p>
     <div class="mt-5 mb-5">
-      <%= RQRCode::QRCode.new(@ticket.qr_code).as_svg(
+      <%= RQRCode::QRCode.new(@ticket.ticket_number).as_svg(
                                                               offset: 0,
                                                               color: '000',
                                                               shape_rendering: 'crispEdges',
