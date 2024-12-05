@@ -1,6 +1,7 @@
+Ticket.destroy_all
 User.destroy_all
 Event.destroy_all
-Ticket.destroy_all
+
 
 # Helper methods
 def random_price
@@ -33,11 +34,48 @@ end
 
 puts "Creating events..."
 # Create 15 events
+REAL_CITIES = [
+  # Colombia
+  'Bogotá, Teatro Colón',
+  'Medellín, Estadio Atanasio Girardot',
+  'Cali, Auditorio La Tertulia',
+  'Barranquilla, Sala Luneta 50',
+  'Cartagena, Centro de Convenciones',
+  'Bucaramanga, Teatro Santander',
+  'Pereira, Café Bar Kamala',
+  'Manizales, Centro Cultural Universitario',
+  'Santa Marta, Plaza Mayor',
+  'Villavicencio, Parque Las Malocas',
+
+  # México
+  'Ciudad de México, Auditorio Nacional',
+  'Guadalajara, Teatro Diana',
+  'Monterrey, Arena Monterrey',
+  'Cancún, Coco Bongo',
+  'Tijuana, Black Box',
+  'Puebla, Auditorio Metropolitano',
+  'Querétaro, La Glotonería',
+  'León, Poliforum León',
+  'Mérida, Foro GNP',
+  'San Luis Potosí, Teatro de la Paz',
+
+  # Argentina
+  'Buenos Aires, Luna Park',
+  'Córdoba, Plaza de la Música',
+  'Rosario, Metropolitano Rosario',
+  'Mendoza, Auditorio Ángel Bustelo',
+  'La Plata, Teatro Coliseo Podestá',
+  'Mar del Plata, Centro Cultural Estación Terminal Sur',
+  'Salta, Teatro Provincial',
+  'San Juan, Espacio San Juan Shopping',
+  'San Miguel de Tucumán, Teatro Mercedes Sosa',
+  'Bariloche, Camping Musical Bariloche'
+]
 events = 15.times.map do |i|
   Event.create!(
     name: Faker::Music::RockBand.name,
     date: Faker::Date.forward(days: rand(30..365)),
-    location: Faker::Address.city,
+    location: REAL_CITIES.sample,
     capacity: rand(50..1000)
   )
 end
