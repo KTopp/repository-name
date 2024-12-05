@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: [:mark_as_pending, :mark_as_for_sale, :destroy, :stop, :cancel, :edit, :update]
+  before_action :set_ticket, only: %i[mark_as_pending mark_as_for_sale destroy stop cancel edit update]
   before_action :authenticate_user! # Devise method to ensure the user is logged in
 
   # GET /events/:id/tickets
@@ -20,6 +20,7 @@ class TicketsController < ApplicationController
     @event = Event.find(params[:id])
     updated_params = ticket_params
     updated_params[:status] = ticket_params[:status].to_i
+    updated_params[:qr_code] = updated_params[:ticket_number]
     @ticket = @event.tickets.build(updated_params)
     @ticket.user = current_user # Assign the ticket to the logged-in user
 
@@ -73,7 +74,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets/my_listings
   def my_listings
-    @tickets = Ticket.where(user_id: current_user.id).where(status: [:for_sale, :pending])
+    @tickets = Ticket.where(user_id: current_user.id).where(status: %i[for_sale pending])
   end
 
   # Not in use
@@ -114,7 +115,7 @@ class TicketsController < ApplicationController
 
   # Strong parameters for ticket creation
   def ticket_params
-    params.require(:ticket).permit(:ticket_number, :price, :ticket_category, :status)
+    params.require(:ticket).permit(:ticket_number, :price, :ticket_category, :qr_code, :status)
   end
 
   # Set a ticket for actions requiring a ticket ID
