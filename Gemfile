@@ -24,6 +24,7 @@ gem "faker"
 ruby '3.3.5'
 gem 'geocoder'
 gem "pg_search"
+gem "dotenv-rails"
 
 gem 'rqrcode'
 
