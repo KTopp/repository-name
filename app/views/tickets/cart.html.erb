@@ -1,7 +1,7 @@
 <h1>Shopping Cart</h1>
 
 <% if @tickets.any? %>
-  <table class="table">
+  <table class="table" data-controller="modal">
     <thead>
       <tr>
         <th>Ticket Number</th>
@@ -17,7 +17,11 @@
           <td><%= ticket.ticket_category.titleize %></td>
           <td>$<%= ticket.price %></td>
           <td>
-            <%= button_to "Remove ticket", cancel_path(ticket), method: :patch, data: { turbo_confirm: "Are you sure you want to remove this ticket?" }, class: "btn btn-danger" %>
+            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-action="click->modal#show"> Remove item </button>
+            <%= render "shared/modal", ticket: ticket,
+                                                path: cancel_path(ticket),
+                                                message: "Remove your #{ticket.ticket_category.titleize} ticket for #{ticket.event.name}",
+                                                footer: "(Remember that you can add it to your cart again from the Event.)"%>
           </td>
         </tr>
       <% end %>

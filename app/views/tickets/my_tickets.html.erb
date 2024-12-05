@@ -2,7 +2,7 @@
   <h1>My Tickets</h1>
 
   <% if @tickets.any? %>
-    <table class="table table-striped">
+    <table class="table table-striped" data-controller="modal">
       <thead>
         <tr>
           <th>Ticket Number</th>
@@ -11,7 +11,6 @@
           <th>Category</th>
           <th>Price</th>
           <th>Actions</th>
-          <th>QR code</th>
         </tr>
       </thead>
       <tbody>
@@ -21,20 +20,13 @@
             <td><%= ticket.event.name %></td>
             <td><%= ticket.event.date.strftime("%d %B %Y") %></td>
             <td><%= ticket.ticket_category.titleize %></td>
-            <td>$<%= ticket.price %></td>
+            <td>$ <%= ticket.price %></td>
             <td>
-              <%= button_to "Resell", sell_ticket_path(ticket), method: :patch, data: { turbo_confirm: "Are you sure you want to resell this ticket?" }, class: "btn btn-primary btn-sm" %>
-            </td>
-            <td>
-              <% if ticket.qr_code %>
-               <%= RQRCode::QRCode.new(ticket.qr_code).as_svg(
-                                                              offset: 0,
-                                                              color: '000',
-                                                              shape_rendering: 'crispEdges',
-                                                              standalone: true,
-                                                              module_size: 5
-                                                              ).html_safe %>
-               <% end %>
+              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-action="click->modal#show"> Resell </button>
+              <%= render "shared/modal", ticket: ticket,
+                                                path: sell_ticket_path(ticket),
+                                                message: "You are about to resell your #{ticket.ticket_category.titleize} ticket for #{ticket.event.name}",
+                                                footer: "(Remember that you can modify the selling price in My tickets.)"%>
             </td>
           </tr>
         <% end %>
@@ -44,7 +36,3 @@
     <p>You have no tickets purchased.</p>
   <% end %>
 </div>
-
-model de bootstrap
-con display none
-al cancelar se vuelve a poner el display none
