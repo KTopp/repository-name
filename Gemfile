@@ -24,8 +24,7 @@ gem "faker"
 ruby '3.3.5'
 gem 'geocoder'
 gem "pg_search"
-gem "dotenv-rails"
-
+gem "cloudinary"
 gem 'rqrcode'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -48,6 +47,7 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
+
 
 group :development, :test do
   gem "dotenv-rails"
