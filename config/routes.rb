@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   # delete "/tickets/:id", to: "tickets#destroy", as: "delete_ticket"   # on the my_listings page each ticket has a button to delete it
   get "tickets/my_tickets", to: "tickets#my_tickets", as: "my_tickets"    # on the profile page there is a link to a page that shows all of the tickets on my page that shows all the tickets with the current user_id and are sold
   patch "/tickets/:id/sell", to: "tickets#mark_as_for_sale", as: "sell_ticket"   # on the my tickets page each ticket has a button that changes the tickt status to for_sale
+  get "tickets/:id/", to: "tickets#show", as: "show"   # on the tickets page each ticket has a button that takes you to the ticket view page
 end

@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: %i[mark_as_pending mark_as_for_sale destroy stop cancel edit update]
+  before_action :set_ticket, only: %i[mark_as_pending mark_as_for_sale destroy stop cancel edit update show]
   before_action :authenticate_user! # Devise method to ensure the user is logged in
 
   # GET /events/:id/tickets
@@ -109,6 +109,10 @@ class TicketsController < ApplicationController
   # GET /tickets/my_tickets
   def my_tickets
     @tickets = Ticket.where(user_id: current_user.id, status: "sold")
+  end
+
+  def show
+    # @ticket provided by set ticket
   end
 
   private
