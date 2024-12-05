@@ -5,6 +5,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th></th>
           <th>Ticket Number</th>
           <th>Event Name</th>
           <th>Date</th>
@@ -17,6 +18,9 @@
       <tbody>
         <% @tickets.each do |ticket| %>
           <tr>
+            <td>
+              <%= button_to "view", show_path(ticket), method: :get, class: "btn btn-primary btn-sm" %>
+            </td>
             <td><%= ticket.ticket_number %></td>
             <td><%= ticket.event.name %></td>
             <td><%= ticket.event.date.strftime("%d %B %Y") %></td>
