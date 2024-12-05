@@ -6,6 +6,7 @@ class TicketsController < ApplicationController
   def index
     @event = Event.find(params[:id])
     @tickets = @event.tickets.where(status: "for_sale")
+    @markers = [{ lat: @event.latitude, lng: @event.longitude }]
   end
 
   # GET /events/:id/tickets/new
@@ -121,4 +122,3 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
   end
 end
-

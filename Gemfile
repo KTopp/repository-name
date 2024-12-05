@@ -9,7 +9,7 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+gem "importmap-rails", "~> 1.2.3"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
@@ -20,6 +20,9 @@ gem "jbuilder"
 # gem "redis", ">= 4.0.1"
 gem "devise"
 gem "faker"
+
+ruby '3.3.5'
+gem 'geocoder'
 gem "pg_search"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
