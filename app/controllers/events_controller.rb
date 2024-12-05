@@ -3,7 +3,11 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all.to_a
+    if params[:query].present?
+      @events = Event.global_search(params[:query])
+    else
+      @events = Event.all
+    end
   end
 
   # GET /events/:id
@@ -18,4 +22,3 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 end
-

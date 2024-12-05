@@ -1,0 +1,13 @@
+<div data-controller="search">
+    <%= form_with url: events_path, method: :get, class: "d-flex my-3 border-radius", html: { data: { search_target: "form" } } do %>
+      <%= text_field_tag  :query,
+                          params[:query],
+                          class: "form-control",
+                          placeholder: "Search for events by name or location",
+                          data: { search_target: "input" } %>
+      <%= submit_tag "Search", name: "", class: "btn btn-success" %>
+    <% end %>
+    <div class="d-flex justify-content-end">
+      <a href="" data-action="click->search#clear" class="text-decoration-none small">Clear search</a>
+    </div>
+</div>

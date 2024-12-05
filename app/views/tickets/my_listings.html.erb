@@ -20,7 +20,7 @@
             <td><%= ticket.ticket_category.titleize %></td>
             <td>$<%= ticket.price %></td>
             <td class="d-flex">
-              <%= button_to "Stop Sale", stop_path(ticket), method: :patch, data: { confirm: "Are you sure you want to stop the sale of this ticket?" }, class: "btn btn-warning btn-sm" %>
+              <%= button_to "Stop Sale", stop_path(ticket), method: :patch, data: { turbo_confirm: "Are you sure you want to stop the sale of this ticket?" }, class: "btn btn-warning btn-sm" %>
               <%= link_to "Edit", edit_ticket_path(ticket), class: "btn btn-primary btn-sm" %>
             </td>
           </tr>
