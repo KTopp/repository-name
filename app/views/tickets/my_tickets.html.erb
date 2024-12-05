@@ -22,7 +22,7 @@
             <td><%= ticket.ticket_category.titleize %></td>
             <td>$<%= ticket.price %></td>
             <td>
-              <%= button_to "Resell", sell_ticket_path(ticket), method: :patch, data: { confirm: "Are you sure you want to resell this ticket?" }, class: "btn btn-primary btn-sm" %>
+              <%= button_to "Resell", sell_ticket_path(ticket), method: :patch, data: { turbo_confirm: "Are you sure you want to resell this ticket?" }, class: "btn btn-primary btn-sm" %>
             </td>
           </tr>
         <% end %>
