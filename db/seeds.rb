@@ -37,7 +37,7 @@ end
 puts "Creating events..."
 # Create 15 events
 event1 = Event.new(
-  name: "The_Beatles",
+  name: "The Beatles",
   date: "2023-08-15",
   location: "Liverpool, England",
   capacity: 100
@@ -47,7 +47,7 @@ event1.photo.attach(io: file1, filename: "beatles.jpg", content_type: "image/png
 event1.save
 
 event2 = Event.new(
-  name: "Billie_Eilish",
+  name: "Billie Eilish",
   date: "2023-09-25",
   location: "Los Angeles, USA",
   capacity: 200
@@ -67,7 +67,7 @@ event3.photo.attach(io: file3, filename: "drake.jpg", content_type: "image/png")
 event3.save
 
 event4 = Event.new(
-  name: "Bad_Bunny",
+  name: "Bad Bunny",
   date: "2023-11-05",
   location: "San Juan, Puerto Rico",
   capacity: 300
@@ -77,7 +77,7 @@ event4.photo.attach(io: file4, filename: "bad_bunny.jpg", content_type: "image/p
 event4.save
 
 event5 = Event.new(
-  name: "Ariana_Grande",
+  name: "Ariana Grande",
   date: "2023-07-20",
   location: "Boca Raton, USA",
   capacity: 150
@@ -87,7 +87,7 @@ event5.photo.attach(io: file5, filename: "ariana_grande.jpg", content_type: "ima
 event5.save
 
 event6 = Event.new(
-  name: "The_Weeknd",
+  name: "The Weeknd",
   date: "2023-09-18",
   location: "Toronto, Canada",
   capacity: 220
@@ -97,7 +97,7 @@ event6.photo.attach(io: file6, filename: "the_weeknd.jpg", content_type: "image/
 event6.save
 
 event7 = Event.new(
-  name: "Travis_Scott",
+  name: "Travis Scott",
   date: "2023-12-01",
   location: "Houston, USA",
   capacity: 250
@@ -107,7 +107,7 @@ event7.photo.attach(io: file7, filename: "travis_scott.jpg", content_type: "imag
 event7.save
 
 event8 = Event.new(
-  name: "Kendrick_Lamar",
+  name: "Kendrick Lamar",
   date: "2023-10-05",
   location: "Compton, USA",
   capacity: 180
@@ -137,7 +137,7 @@ event10.photo.attach(io: file10, filename: "shakira.jpg", content_type: "image/p
 event10.save
 
 event11 = Event.new(
-  name: "Ed_Sheeran",
+  name: "Ed Sheeran",
   date: "2023-08-30",
   location: "Halifax, England",
   capacity: 180
@@ -157,7 +157,7 @@ event12.photo.attach(io: file12, filename: "beyonce.jpg", content_type: "image/p
 event12.save
 
 event13 = Event.new(
-  name: "Harry_Styles",
+  name: "Harry Styles",
   date: "2023-10-18",
   location: "Redditch, England",
   capacity: 200
@@ -167,7 +167,7 @@ event13.photo.attach(io: file13, filename: "harry_styles.jpg", content_type: "im
 event13.save
 
 event14 = Event.new(
-  name: "Lil_Nas_X",
+  name: "Lil Nas X",
   date: "2023-11-25",
   location: "Atlanta, USA",
   capacity: 180
@@ -177,7 +177,7 @@ event14.photo.attach(io: file14, filename: "lil_nas_x.jpg", content_type: "image
 event14.save
 
 event15 = Event.new(
-  name: "Post_Malone",
+  name: "Post Malone",
   date: "2023-12-10",
   location: "Syracuse, USA",
   capacity: 250
