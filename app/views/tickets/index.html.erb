@@ -9,7 +9,7 @@
     </div>
 
     <div class="d-flex justify-content-center align-items-center" style="width: 50%;">
-      <img src="https://wallpaperaccess.com/full/2489692.jpg" class="img-fluid rounded-4" alt="Responsive image" style="width: 80%; height: auto; object-fit: cover;">
+      <%= cl_image_tag @event.photo.key, class: "img-fluid rounded-4", alt: "Responsive image", style: "width: 80%; height: auto; object-fit: cover;"%>
     </div>
   </div>
 </div>
@@ -29,7 +29,7 @@
         <% if @tickets.any? %>
           <table class="table table-striped">
             <thead>
-              <tr>
+              <tr style="margin-bottom:15px">
                 <th>Ticket Number</th>
                 <th>Category</th>
                 <th>Price</th>
@@ -43,7 +43,7 @@
                   <td><%= ticket.ticket_category.titleize %></td>
                   <td>$<%= ticket.price %></td>
                   <td>
-                    <%= button_to "Add to cart", pending_ticket_path(ticket), method: :patch, class: "btn btn-primary" %>
+                    <%= button_to "Add to cart", pending_ticket_path(ticket), method: :patch, class: "btn btn-primary rounded-3" %>
                   </td>
                 </tr>
               <% end %>
@@ -53,6 +53,8 @@
           <p>No tickets available for this event.</p>
         <% end %>
       </div>
+
+
       <div class="col-6">
         <div class="ml-5 " style="width: 100%; height: 400px;"
           data-controller="map"
@@ -62,6 +64,14 @@
       </div>
     </div>
 
+
+     <div class="card-product d-flex">
+        <div class="card-product-infos d-flex">
+          <h2>Product name</h2>
+          <h2>Product name</h2>
+          <h2>Product name</h2>
+        </div>
+      </div>
 
   </div>
 </div>
