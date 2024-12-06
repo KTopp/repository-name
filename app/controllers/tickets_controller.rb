@@ -87,7 +87,7 @@ class TicketsController < ApplicationController
   # PATCH "/tickets/:id/stop"
   def stop
     if @ticket.update(status: :sold)
-      redirect_to my_listings_path, notice: "Ticket marked as sold and removed from sale."
+      redirect_to my_listings_path, notice: "Ticket removed from sale. You can access it in the 'My Tickets' section."
     else
       redirect_to my_listings_path, alert: "Unable to stop the sale of this ticket."
     end

@@ -1,0 +1,29 @@
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel"><strong>Are you sure?</strong></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="d-flex align-items-center">
+                <%# change img to cloudinary!! %>
+                <img src="https://ichef.bbci.co.uk/images/ic/256xn/p01btpwf.jpg" style="width: 100px;" alt="">
+                <p class="ps-3"><%= message %></p>
+            </div>
+            <div class="ms-2">
+                <hr>
+                <p class="small"><strong>Date:</strong> <%= ticket.event.date.strftime("%e %B %Y") %></p>
+                <p class="small"><strong>Location:</strong> <%= ticket.event.location %></p>
+                <p class="small"><strong>Price:</strong> <%= ticket.price %></p>
+            </div>
+        </div>
+        <p class="small ms-3"><em><%= footer %></em></p>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= button_to "Confirm", path, method: :patch, class: "btn btn-primary" %>
+        </div>
+    </div>
+    </div>
+</div>
