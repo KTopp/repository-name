@@ -64,4 +64,8 @@ class TicketPolicy < ApplicationPolicy
   def stop?
     true
   end
+
+  def show?
+    true
+  end
 end
