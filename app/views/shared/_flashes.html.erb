@@ -1,0 +1,17 @@
+<!-- app/views/shared/_flashes.html.erb -->
+<% if notice %>
+  <div class="flash flash-success alert alert-dismissible fade show small" role="alert">
+    <%= notice %>
+    <a data-bs-dismiss="alert" aria-label="Close">
+      <i class="ps-3 fas fa-times"></i>
+    </a>
+  </div>
+<% end %>
+<% if alert %>
+  <div class="flash flash-danger alert alert-dismissible fade show small" role="alert">
+    <%= alert %>
+    <a data-bs-dismiss="alert" aria-label="Close">
+      <i class="ps-3 fas fa-times"></i>
+    </a>
+  </div>
+<% end %>

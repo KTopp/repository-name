@@ -1,11 +1,9 @@
 <!-- Banner -->
 <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://wallpaperaccess.com/full/2489692.jpg)">
-  GoGoGo
 </div>
-
 <!-- Category Header -->
 <div class="mt-5 border-bottom text-center">
-	<h2>Featured Listings</h2>
+	<h2>Featured Events</h2>
 </div>
 
 <!-- Featured Event Cards -->
@@ -25,7 +23,7 @@
 
 <!-- Go to all events -->
 <div class="mt-5 mb-5 d-flex justify-content-center">
-	<%= button_to "See All Events", events_path, method: :patch, class: "btn btn-primary btn-lg" %>
+	<%= button_to "See All Events", events_path, method: :get, class: "btn btn-success btn-lg" %>
 </div>
     
 </div>

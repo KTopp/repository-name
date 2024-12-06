@@ -1,13 +1,28 @@
-<div class="container mt-4">
-  <h1>Edit Ticket Price</h1>
-
+<div class="container mt-4 border shadow p-3">
+  <h1>Modify your ticket's price</h1>
+  <hr>
+  <p><strong>Event:</strong> <%= @ticket.event.name %></p>
+  <p><strong>Date:</strong> <%= @ticket.event.date.strftime("%d %B %Y") %></p>
+  <p><strong>Category:</strong> <%= @ticket.ticket_category.titleize %></p>
+  <p><strong>Tickets still for sale:</strong> <%= @ticket.event.tickets.where(status: "for_sale").count %></p>
+  <p><strong>Current average price:</strong>
+                <% avg_tickets = [] %>
+                <% @ticket.event.tickets.where(status: "for_sale").each do |ticket| %>
+                    <% avg_tickets << ticket.price %>
+                <% end %>
+                <% if @ticket.event.tickets.where(status: "for_sale").any? %>
+                    $ <%= avg_tickets.sum.fdiv(@ticket.event.tickets.where(status: "for_sale").count).round(0) %>
+                <%end%>
+                </p>
+  <hr>
+  <strong>
   <%= simple_form_for @ticket, url: update_ticket_path(@ticket), method: :patch do |f| %>
     
     <div class="mb-3">
-      <%= f.label :price, "Price" %>
-      <%= f.number_field :price, step: 0.01, class: "form-control", placeholder: "Enter new price" %>
+      <%= f.label :price, "Your current price", class: "mb-3" %>
+      <%= f.number_field :price, step: 1, class: "form-control", placeholder: "Enter new price" %>
     </div>
-    
+    </strong>
     <div class="mt-3">
       <%= f.submit "Update Price", class: "btn btn-primary" %>
     </div>

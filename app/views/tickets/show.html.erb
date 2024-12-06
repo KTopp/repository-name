@@ -1,19 +1,20 @@
 <!-- Banner -->
 <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://wallpaperaccess.com/full/2489692.jpg)">
-  GoGoGo
+
 </div>
 
 <!-- Category Header -->
-<div class="mt-5 mb-3 border-bottom text-center">
+<div class="mt-5 border-bottom text-center">
 	<h2>Your Ticket</h2>
+  <p class="small"> Print this page or download it to be scanned at the event</p>
 </div>
 
 <div class="row d-flex justify-content-center">
-  <div class="col-4 text-center border rounded p-3 m-5">
+  <div class="col-4 text-center border rounded p-3 m-5 shadow">
     <h3 class="mt-3 mb-3"><%= @ticket.event.name %></h3>
     <p class="mb-3"><%= @ticket.event.date.strftime("%d %B %Y") %></p>
     <p class="mb-3"><%= @ticket.event.location %></p>
-    <p class="mb-3">Category: <%= @ticket.ticket_category %></p>
+    <p class="mb-3">Category: <%= @ticket.ticket_category.titleize %></p>
     <p class="mb-3">Price: $<%= @ticket.price %></p>
     <div class="mt-5 mb-5">
       <%= RQRCode::QRCode.new(@ticket.ticket_number).as_svg(

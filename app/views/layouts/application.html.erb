@@ -26,35 +26,48 @@
         </button>
 
         <!-- Navbar Brand -->
-        <a class="navbar-brand" href="<%= events_path %>">GoGoGo</a>
+        <a class="navbar-brand" href="<%= root_path %>">
+          <%= image_tag "gogogo_logo.png", class: "ms-2", size: "80x25" %>
+        </a>
 
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
+            <!-- All events Link -->
+            <li class="nav-item">
+              <a class="nav-link" href="<%= events_path %>">Explore</a>
+            </li>
+
+
             <!-- My Listings Link -->
             <li class="nav-item">
-              <a class="nav-link" href="<%= my_listings_path %>">My Listings</a>
+              <a class="nav-link" href="<%= my_listings_path %>">My listings</a>
             </li>
 
             <!-- My Tickets Link -->
             <li class="nav-item">
-              <a class="nav-link" href="<%= my_tickets_path %>">My Tickets</a>
+              <a class="nav-link" href="<%= my_tickets_path %>">My tickets</a>
             </li>
           </ul>
 
           <!-- Buttons -->
-          <div class="d-flex">
+          <div class="d-flex align-items-center">
+            <% if user_signed_in? %>
             <!-- Cart Button -->
-            <a class="btn btn-outline-primary me-2" href="<%= cart_path %>">Cart</a>
+            <a class="btn btn-outline-success me-2" href="<%= cart_path %>">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </a>
 
             <!-- Profile Button -->
-            <a class="btn btn-outline-success me-2" href="<%= edit_user_registration_path %>">Profile</a>
+            <a class="btn btn-outline-success me-2" href="<%= edit_user_registration_path %>">
+              <i class="fa-solid fa-user"></i>
+            </a>
 
             <!-- Login Button -->
-            <% if user_signed_in? %>
-              <a class="btn btn-outline-danger" href="<%= destroy_user_session_path %>">Log Out</a>
+              <%= link_to "Log out", destroy_user_session_path, class: "btn btn-body-color btn-sm", data: {turbo_method: :delete}%>
             <% else %>
-              <a class="btn btn-outline-primary" href="<%= new_user_session_path %>">Sign In</a>
+              <a class="btn btn-success" href="<%= new_user_session_path %>">Sign In</a>
             <% end %>
           </div>
           
@@ -62,7 +75,6 @@
       </div>
     </nav>
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render "shared/flashes" %>
   </body>
 </html>
