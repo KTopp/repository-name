@@ -72,7 +72,7 @@ REAL_CITIES = [
   'Bariloche, Camping Musical Bariloche'
 ]
 bands = [
-  "The Beatles",
+  "The_beatles",
   "Queen",
   "Led Zeppelin",
   "The Rolling Stones",
@@ -88,6 +88,23 @@ bands = [
   "Green Day",
   "The Clash"
 ]
+# band_images = [
+#     "The_beatles" => "link-cloudinary"
+#     "Queen",
+#     "Led Zeppelin",
+#     "The Rolling Stones",
+#     "Pink Floyd",
+#     "Nirvana",
+#     "The Who",
+#     "AC/DC",
+#     "Metallica",
+#     "U2",
+#     "Radiohead",
+#     "Foo Fighters",
+#     "The Doors",
+#     "Green Day",
+#     "The Clash"
+# ]
 events = 15.times.map do |i|
   Event.create!(
     name: bands.sample,

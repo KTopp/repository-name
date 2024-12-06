@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   has_many :tickets
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
+  has_one_attached :photo
 
   include PgSearch::Model
   pg_search_scope :global_search,
@@ -9,7 +10,7 @@ class Event < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
-  
+
   def geocode
     super
     if latitude.nil? || longitude.nil?
