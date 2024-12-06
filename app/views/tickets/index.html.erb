@@ -5,6 +5,9 @@
   <p>Capacity: <%= @event.capacity %></p>
 
   <%= link_to "Create New Ticket", new_ticket_path(event_id: @event.id), class: "btn btn-success my-3" %>
+  <%= link_to edit_event_path, { class: "btn btn-success" } do %>
+    <i class="fa-solid fa-user"></i> Edit event details
+  <% end %>
 
   <hr>
 

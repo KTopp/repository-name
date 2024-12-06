@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   # event routes
   get "/events", to: "events#index", as: "events"   # this page shows all the events
+  get "/events/new", to:"events#new", as: "new_event" # this page renders the form for a new event
+  post "/events", to:"events#create"                  # this route creates the post request to create a new event
+  get "/events/:id/edit", to: "events#edit", as: "edit_event" # this route renders the form to edit an event
+  patch "/events/:id", to: "events#update", as: "update_event"
   get "/events/:id/tickets", to: "tickets#index", as: "event_tickets"   # when you click on an event you go to this page which shows all tickets for sale for an event
   get "events/:id/tickets/new", to: "tickets#new", as: "new_ticket"  # there is a button on the event_tickets page that takes you to a form to make a new ticket
   post "/events/:id/tickets", to: "tickets#create"    # this creates a new ticket when you hit submit
