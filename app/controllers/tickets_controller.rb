@@ -15,12 +15,17 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
   end
 
+  # GET /events/:id/tickets/bulk_new
+  def bulk_new
+    @event = Event.find(params[:event_id]) # Fetch the associated event
+    @ticket = Ticket.new
+  end
+
   # POST /events/:id/tickets
   def create
     @event = Event.find(params[:id])
     updated_params = ticket_params
     updated_params[:status] = ticket_params[:status].to_i
-    updated_params[:qr_code] = updated_params[:ticket_number]
     @ticket = @event.tickets.build(updated_params)
     # @ticket.user = current_user # Assign the ticket to the logged-in user
 
@@ -29,6 +34,29 @@ class TicketsController < ApplicationController
     else
       redirect_to event_tickets_path(@event), alert: @ticket.errors.full_messages.to_sentence
     end
+  end
+
+  def create
+    @event = Event.find(params[:id])
+    @quantity = params[:quantity].to_i
+    errors = []
+
+    number_of_tickets.times do
+      updated_params = ticket_params
+      updated_params[:status] = ticket_params[:status].to_i
+      updated_params[:ticket_numnber] = SecureRandom.hex(6).upcase
+      @ticket = @event.tickets.build(updated_params)
+      # @ticket.user = current_user # Assign the ticket to the logged-in user
+
+      errors << ticket.errors.full_messages.to_sentence unless ticket.save
+    end
+
+    if errors.empty?
+      redirect_to event_tickets_path(@event), notice: "#{quantity} tickets created successfully!"
+    else
+      redirect_to event_tickets_path(@event), alert: "Some tickets failed to create: #{errors.uniq.join(', ')}"
+    end
+    
   end
 
   # PATCH /tickets/:id/pending
