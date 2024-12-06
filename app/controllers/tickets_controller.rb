@@ -11,13 +11,13 @@ class TicketsController < ApplicationController
 
   # GET /events/:id/tickets/new
   def new
-    @event = Event.find(params[:event_id]) # Fetch the associated event
+    @event = Event.find(params[:event_id])
     @ticket = Ticket.new
   end
 
   # GET /events/:id/tickets/bulk_new
   def bulk_new
-    @event = Event.find(params[:event_id]) # Fetch the associated event
+    @event = Event.find(params[:event_id])
     @ticket = Ticket.new
   end
 
@@ -36,12 +36,13 @@ class TicketsController < ApplicationController
     end
   end
 
+  # POST /events/:id/tickets
   def create
     @event = Event.find(params[:id])
-    @quantity = params[:quantity].to_i
+    quantity = params[:quantity].to_i
     errors = []
 
-    number_of_tickets.times do
+    quantity.times do
       updated_params = ticket_params
       updated_params[:status] = ticket_params[:status].to_i
       updated_params[:ticket_numnber] = SecureRandom.hex(6).upcase
