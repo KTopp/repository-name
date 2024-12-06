@@ -19,7 +19,16 @@
 
 
   <%= link_to "Create New Ticket", new_ticket_path(event_id: @event.id), class: "btn btn-success my-3" %>
-
+  <% if policy(@tickets).bulk_create? %>
+    <%= link_to bulk_tickets_path(event_id: @event.id), class: "btn btn-primary my-3" do %>
+      <i class="fa-solid fa-ticket"></i> Create tickets in bulk
+      <% end %>
+  <% end %>
+  <% if policy(@event).update? %>
+  <%= link_to edit_event_path, { class: "btn btn-success" } do %>
+    <i class="fa-solid fa-user"></i> Edit event details
+  <% end %>
+  <% end %>
   <hr>
 
   <h2>Available Tickets</h2>
