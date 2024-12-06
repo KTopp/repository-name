@@ -71,9 +71,43 @@ REAL_CITIES = [
   'San Miguel de Tucumán, Teatro Mercedes Sosa',
   'Bariloche, Camping Musical Bariloche'
 ]
+bands = [
+  "The_beatles",
+  "Queen",
+  "Led Zeppelin",
+  "The Rolling Stones",
+  "Pink Floyd",
+  "Nirvana",
+  "The Who",
+  "AC/DC",
+  "Metallica",
+  "U2",
+  "Radiohead",
+  "Foo Fighters",
+  "The Doors",
+  "Green Day",
+  "The Clash"
+]
+# band_images = [
+#     "The_beatles" => "link-cloudinary"
+#     "Queen",
+#     "Led Zeppelin",
+#     "The Rolling Stones",
+#     "Pink Floyd",
+#     "Nirvana",
+#     "The Who",
+#     "AC/DC",
+#     "Metallica",
+#     "U2",
+#     "Radiohead",
+#     "Foo Fighters",
+#     "The Doors",
+#     "Green Day",
+#     "The Clash"
+# ]
 events = 15.times.map do |i|
   Event.create!(
-    name: Faker::Music::RockBand.name,
+    name: bands.sample,
     date: Faker::Date.forward(days: rand(30..365)),
     location: REAL_CITIES.sample,
     capacity: rand(50..1000)
