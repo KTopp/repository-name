@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   has_many :tickets
+  has_one_attached :photo
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
 
@@ -9,7 +10,7 @@ class Event < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
-  
+
   def geocode
     super
     if latitude.nil? || longitude.nil?

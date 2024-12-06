@@ -1,14 +1,26 @@
-<div class="container mt-4">
-  <h1>Tickets for <%= @event.name %></h1>
-  <p>Date: <%= @event.date.strftime("%B %d, %Y") %></p>
-  <p>Location: <%= @event.location %></p>
-  <p>Capacity: <%= @event.capacity %></p>
+<div class="d-flex justify-content-center ">
+  <div class="card text-white rounded-15 shadow m-3 col-6">
+    <%= cl_image_tag("xlqzpyq2nksppzfo2u4w") %>
 
-  <%= link_to "Create New Ticket", new_ticket_path(event_id: @event.id), class: "btn btn-success my-3" %>
+  </div>
+  <div class="card text-white bg-secondary rounded-5 shadow m-3">
+    <div class="p-3">
+      <h1 class="card-title">Tickets for <%= @event.name %></h1>
+      <p class="card-text">Date: <%= @event.date.strftime("%B %d, %Y") %></p>
+      <p class="card-text">Location: <%= @event.location %></p>
+      <p class="card-text">Capacity: <%= @event.capacity %></p>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container mt-4">
 
   <hr>
 
   <h2>Available Tickets</h2>
+  <%= link_to "Create New Ticket", new_ticket_path(event_id: @event.id), class: "btn btn-success my-3" %>
   <div class="container">
     <div class="row justify-content-between">
       <div class="col-6">

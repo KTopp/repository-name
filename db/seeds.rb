@@ -1,7 +1,7 @@
 Ticket.destroy_all
 User.destroy_all
 Event.destroy_all
-
+require 'open-uri'
 
 # Helper methods
 def random_price
@@ -72,21 +72,21 @@ REAL_CITIES = [
   'Bariloche, Camping Musical Bariloche'
 ]
 bands = [
-  "The Beatles",
+  "The_Beatles",
   "Queen",
-  "Led Zeppelin",
-  "The Rolling Stones",
-  "Pink Floyd",
+  "Led_Zeppelin",
+  "The_Rolling Stones",
+  "Pink_Floyd",
   "Nirvana",
-  "The Who",
+  "The_Who",
   "AC/DC",
   "Metallica",
   "U2",
   "Radiohead",
-  "Foo Fighters",
-  "The Doors",
-  "Green Day",
-  "The Clash"
+  "Foo_Fighters",
+  "The_Doors",
+  "Green_Day",
+  "The_Clash"
 ]
 events = 15.times.map do |i|
   Event.create!(
@@ -95,6 +95,9 @@ events = 15.times.map do |i|
     location: REAL_CITIES.sample,
     capacity: rand(50..1000)
   )
+  image_url = BAND_IMAGES[event.name]
+  event.image.attach(io: URI.open(image_url), filename: "#{event.name.downcase}.jpg", content_type: "image/jpeg")
+  event
 end
 
 puts "Creating tickets..."
