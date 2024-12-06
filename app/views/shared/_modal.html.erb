@@ -16,7 +16,7 @@
                 <hr>
                 <p class="small"><strong>Date:</strong> <%= ticket.event.date.strftime("%e %B %Y") %></p>
                 <p class="small"><strong>Location:</strong> <%= ticket.event.location %></p>
-                <p class="small"><strong>Price:</strong> <%= ticket.price %></p>
+                <p class="small"><strong>Price:</strong> $ <%= ticket.price.round(0) %></p>
             </div>
         </div>
         <p class="small ms-3"><em><%= footer %></em></p>

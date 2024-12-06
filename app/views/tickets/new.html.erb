@@ -24,7 +24,7 @@
     <%= f.hidden_field :status, value: Ticket.statuses[:for_sale] %>
 
     <!-- Event ID (Hidden) -->
-    <%= f.hidden_field :event_id, value: @event.id %>
+    <%# <%= f.hidden_field :event_id, value: @event.id %>
 
     <!-- User ID (Hidden) -->
     <%= f.hidden_field :user_id, value: current_user.id %>

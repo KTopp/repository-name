@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[mark_as_pending mark_as_for_sale destroy stop cancel edit update show]
-  before_action :authenticate_user! # Devise method to ensure the user is logged in
+  skip_before_action :authenticate_user!, only: :index
 
   # GET /events/:id/tickets
   def index
@@ -22,7 +22,7 @@ class TicketsController < ApplicationController
     updated_params[:status] = ticket_params[:status].to_i
     updated_params[:qr_code] = updated_params[:ticket_number]
     @ticket = @event.tickets.build(updated_params)
-    @ticket.user = current_user # Assign the ticket to the logged-in user
+    # @ticket.user = current_user # Assign the ticket to the logged-in user
 
     if @ticket.save
       redirect_to event_tickets_path(@event), notice: "Ticket created successfully!"
@@ -119,7 +119,7 @@ class TicketsController < ApplicationController
 
   # Strong parameters for ticket creation
   def ticket_params
-    params.require(:ticket).permit(:ticket_number, :price, :ticket_category, :qr_code, :status)
+    params.require(:ticket).permit(:ticket_number, :price, :ticket_category, :qr_code, :status, :user_id)
   end
 
   # Set a ticket for actions requiring a ticket ID

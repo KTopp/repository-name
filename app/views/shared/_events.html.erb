@@ -1,0 +1,33 @@
+<div class="container mt-2 mb-3 p-3 w-100 border shadow rounded">
+<%= link_to event_tickets_path(event), class: "text-decoration-none text-body" do %>
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <%= image_tag "rock-concert-vibes-stockcake.png", size: "100x100" %>
+            <div class="ms-3">
+                <h5 class="mb-0"> <strong> <%= event.name %> </strong></h5>
+                <p class="small"> <em><%= event.date.strftime("%e %B %Y") %>
+                    @ <%= event.location %></em></p>
+                <h5 class="my-0">
+                <p class="small">Current average price:
+                <% avg_tickets = [] %>
+                <% event.tickets.where(status: "for_sale").each do |ticket| %>
+                    <% avg_tickets << ticket.price %>
+                <% end %>
+                <% if event.tickets.where(status: "for_sale").any? %>
+                    $ <%= avg_tickets.sum.fdiv(event.tickets.where(status: "for_sale").count).round(0) %>
+                <%end%>
+                </p>
+                </h5> 
+                <strong><%= event.tickets.where(status: "for_sale").count %> <em></em></strong>
+                <% if event.tickets.where(status: "for_sale").count == 1 %>
+                     ticket available
+                <% else %>
+                    tickets available
+                <% end %>
+            </div>
+        </div>
+        <div>
+        </div>
+    </div>
+<% end %>
+</div>

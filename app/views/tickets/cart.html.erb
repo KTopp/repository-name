@@ -1,5 +1,7 @@
-<h1>Shopping Cart</h1>
+<div class="container mt-4 border shadow p-3">
+  <h1>Shopping Cart</h1>
 
+  <hr>
 <% if @tickets.any? %>
   <table class="table" data-controller="modal">
     <thead>
@@ -29,5 +31,7 @@
   </table>
   <%= button_to "Purchase All", sold_path, method: :patch, class: "btn btn-success" %>
 <% else %>
-  <p>Your cart is empty.</p>
+  <p>Your shopping cart is empty.
+    <%= link_to "Explore events to purchase the best ticket for you!", events_path, class: "text-decoration-none" %> </p>
 <% end %>
+</div>

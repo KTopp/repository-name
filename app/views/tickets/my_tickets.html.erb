@@ -1,16 +1,16 @@
-<div class="container mt-4">
+<div class="container mt-4 border shadow p-3">
   <h1>My Tickets</h1>
-
+  <hr>
   <% if @tickets.any? %>
     <table class="table table-striped" data-controller="modal">
       <thead>
         <tr>
           <th></th>
-          <th>Ticket Number</th>
           <th>Event Name</th>
           <th>Date</th>
           <th>Category</th>
           <th>Price</th>
+          <th>Ticket Number</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -18,25 +18,27 @@
         <% @tickets.each do |ticket| %>
           <tr>
             <td>
-              <%= button_to "view", show_path(ticket), method: :get, class: "btn btn-primary btn-sm" %>
+              <%= button_to show_path(ticket), method: :get, class: "btn btn-outline btn-sm" do %>
+                <i class="fa-solid fa-qrcode"></i>
+                <% end %>
             </td>
-            <td><%= ticket.ticket_number %></td>
             <td><%= ticket.event.name %></td>
             <td><%= ticket.event.date.strftime("%d %B %Y") %></td>
             <td><%= ticket.ticket_category.titleize %></td>
-            <td>$ <%= ticket.price %></td>
+            <td>$ <%= ticket.price.round(0) %></td>
+            <td><%= ticket.ticket_number %></td>
             <td>
               <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-action="click->modal#show"> Resell </button>
               <%= render "shared/modal", ticket: ticket,
                                                 path: sell_ticket_path(ticket),
                                                 message: "You are about to resell your #{ticket.ticket_category.titleize} ticket for #{ticket.event.name}",
-                                                footer: "(Remember that you can modify the selling price in My tickets.)"%>
+                                                footer: "(Remember that you can modify the selling price in My listings.)"%>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   <% else %>
-    <p>You have no tickets purchased.</p>
+    <p>You have no tickets purchased. <%= link_to "Explore events to purchase the best ticket for you!", events_path, class: "text-decoration-none" %></p>
   <% end %>
 </div>

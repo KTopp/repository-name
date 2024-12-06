@@ -1,26 +1,32 @@
-<div class="container mt-4">
+<div class="container mt-4 border shadow p-3">
   <h1>My Listings</h1>
-
+  <hr>
   <% if @tickets.any? %>
     <table class="table table-striped" data-controller="modal">
       <thead>
         <tr>
-          <th>Ticket Number</th>
+          <th></th>
           <th>Event Name</th>
           <th>Date</th>
           <th>Category</th>
           <th>Price</th>
+          <th>Ticket Number</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <% @tickets.each do |ticket| %>
           <tr>
-            <td><%= ticket.ticket_number %></td>
+            <td>
+                <%= button_to show_path(ticket), method: :get, class: "btn btn-outline btn-sm" do %>
+                  <i class="fa-solid fa-qrcode"></i>
+                <% end %>
+            </td>
             <td><%= ticket.event.name %></td>
             <td><%= ticket.event.date.strftime("%e %B %Y") %></td>
             <td><%= ticket.ticket_category.titleize %></td>
-            <td>$<%= ticket.price %></td>
+            <td>$<%= ticket.price.round(0) %></td>
+            <td><%= ticket.ticket_number %></td>
             <td class="d-flex">
               <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-action="click->modal#show"> Stop sale </button>
               <%= render "shared/modal", ticket: ticket,
@@ -28,13 +34,13 @@
                                                 message: "You are about to stop the sale of your #{ticket.ticket_category.titleize} ticket for #{ticket.event.name}",
                                                 footer: "(Remember that you can resell this ticket from My tickets.)" %>
               <%# <%= button_to "Stop Sale", stop_path(ticket), method: :patch, data: { turbo_confirm: "Are you sure you want to stop the sale of this ticket?" }, class: "btn btn-warning btn-sm" %>
-              <%= link_to "Edit", edit_ticket_path(ticket), class: "btn btn-primary btn-sm ms-3" %>
+              <%= link_to "Edit", edit_ticket_path(ticket), class: "btn btn-success btn-sm ms-3" %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   <% else %>
-    <p>You currently have no tickets listed for sale or pending.</p>
+    <p>You currently have no tickets listed for sale or pending. <%= link_to "Explore events to purchase the best ticket for you!", events_path, class: "text-decoration-none" %></p>
   <% end %>
 </div>
