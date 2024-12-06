@@ -5,7 +5,9 @@
   <p>Capacity: <%= @event.capacity %></p>
 
   <%= link_to "Create New Ticket", new_ticket_path(event_id: @event.id), class: "btn btn-success my-3" %>
-
+  <%# if @user.role = "promoter" || "admin" %>
+    <%= link_to "Bulk Create Tickets", bulk_tickets_path(event_id: @event.id), class: "btn btn-success my-3" %>
+  <%# end %>
   <hr>
 
   <h2>Available Tickets</h2>
