@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def home
-    @events = policy_scope(Event).limit(6)
+    skip_authorization
+    @events = Event.all.limit(6)
   end
 end

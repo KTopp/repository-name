@@ -16,6 +16,7 @@
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
+      <p class="small">Role: <%= current_user.role.capitalize %></p>
       <hr>
       <p><strong>Personal info</strong></p>
       <%= f.input :first_name,

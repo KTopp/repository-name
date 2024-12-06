@@ -30,7 +30,7 @@ class TicketPolicy < ApplicationPolicy
   end
 
   def bulk_create?
-    user.role == "promoter"
+    user&.role == "promoter"
   end
 
   def my_listings?

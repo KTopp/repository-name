@@ -13,18 +13,14 @@ class EventPolicy < ApplicationPolicy
   end
 
   def create?
-    user.role == "admin"
+    user&.role == "admin"
   end
 
   def update?
-    user.role == "admin"
+    user&.role == "admin"
   end
 
   def show?
     true
   end
-
-  # def bulk_create?
-  #   true
-  # end
 end
