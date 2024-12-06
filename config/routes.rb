@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   patch "/events/:id", to: "events#update", as: "update_event"
   get "/events/:id/tickets", to: "tickets#index", as: "event_tickets"   # when you click on an event you go to this page which shows all tickets for sale for an event
   get "events/:id/tickets/new", to: "tickets#new", as: "new_ticket"  # there is a button on the event_tickets page that takes you to a form to make a new ticket
+  get "events/:id/tickets/bulk_new", to: "tickets#bulk_new", as: "bulk_tickets"
+  post "events/:id/tickets", to: "tickets#create_bulk", as: "bulk_create"
   post "/events/:id/tickets", to: "tickets#create"    # this creates a new ticket when you hit submit
   
   # ticket routes
