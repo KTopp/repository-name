@@ -5,23 +5,26 @@ class EventsController < ApplicationController
   # GET /events
   def index
     if params[:query].present?
-      @events = Event.global_search(params[:query])
+      @events = policy_scope(Event).global_search(params[:query])
     else
-      @events = Event.all
+      @events = policy_scope(Event)
     end
   end
 
   # GET /events/:id
   def show
     @tickets = @event.tickets.where(status: "for_sale")
+    authorize @event
   end
 
   def new
     @event = Event.new
+    authorize @event
   end
 
   def create
     @event = Event.new(event_params)
+    authorize @event
     if @event.save
       redirect_to event_tickets_path(@event)
     else
@@ -30,9 +33,11 @@ class EventsController < ApplicationController
   end
 
   def edit
+    authorize @event
   end
 
   def update
+    authorize @event
     if @event.update(event_params)
       redirect_to event_tickets_path(@event)
     else

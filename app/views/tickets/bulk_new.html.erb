@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <h1>Create New Ticket for <%= @event.name %></h1>
   
-  <%= simple_form_for @ticket, url: event_tickets_path, method: :post do |f| %>
+  <%= simple_form_for @ticket, url: bulk_create_path, method: :post do |f| %>
     
     <!-- Ticket Quantity -->
     <div class="mb-3">

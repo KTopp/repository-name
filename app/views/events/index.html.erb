@@ -1,8 +1,12 @@
 <div class="container mt-4">
   <h1>Explore all events</h1>
+  
+  <% if policy(@events).create? %>
   <%= link_to new_event_path, { class: "btn btn-success btn-sm" } do %>
     <i class="fa-solid fa-user"></i> + Create event
   <% end %>
+  <% end %>
+  
   <%= render "shared/events_search_bar" %>
   <div id="events" class="mt-4">
     <% if @events.any? %>
