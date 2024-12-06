@@ -155,6 +155,7 @@ class TicketsController < ApplicationController
 
   def show
     # @ticket provided by set ticket
+    authorize @ticket
   end
 
   private
