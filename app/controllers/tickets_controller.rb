@@ -37,7 +37,7 @@ class TicketsController < ApplicationController
   end
 
   # POST /events/:id/tickets
-  def create
+  def create_bulk
     @event = Event.find(params[:id])
     quantity = params[:quantity].to_i
     errors = []
@@ -45,11 +45,11 @@ class TicketsController < ApplicationController
     quantity.times do
       updated_params = ticket_params
       updated_params[:status] = ticket_params[:status].to_i
-      updated_params[:ticket_numnber] = SecureRandom.hex(6).upcase
+      updated_params[:ticket_number] = SecureRandom.hex(6).upcase
       @ticket = @event.tickets.build(updated_params)
       # @ticket.user = current_user # Assign the ticket to the logged-in user
 
-      errors << ticket.errors.full_messages.to_sentence unless ticket.save
+      errors << ticket.errors.full_messages.to_sentence unless @ticket.save
     end
 
     if errors.empty?
@@ -57,7 +57,6 @@ class TicketsController < ApplicationController
     else
       redirect_to event_tickets_path(@event), alert: "Some tickets failed to create: #{errors.uniq.join(', ')}"
     end
-    
   end
 
   # PATCH /tickets/:id/pending
